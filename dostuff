@@ -8,7 +8,6 @@
 
 # Main configuration ends! Don't edit anything below this if you use gmail.
 
-
 # you may have to fiddle with this and delete unused/redundant/old things from your
 # keychain to make this work. test it in irb.
 @password = `security 2>&1 >/dev/null find-internet-password -g -s 'www.google.com' -a '#{@email_address}' | cut -d '"' -f 2`.strip
@@ -35,7 +34,7 @@ require '/Library/Ruby/Gems/1.8/gems/pony-1.0/lib/pony.rb'
 def email(email_address, message)
   Pony.mail(
     :to => email_address,
-    :from => email_address,
+    :from => @email_address,
     :subject => message,
     :body => message,
     :via => :smtp,

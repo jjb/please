@@ -4,6 +4,11 @@ Do Stuff
 Have you ever wished you could just tell your computer and the internet to do the stuff that you know it knows how to do? Now you can.
 
 
+    $ dostuff email me "hello"
+    $ dostuff email sally@example.com "Hi Sally."
+    $ dostuff sms me "what is up."
+    $ dostuff sms 8675309@gateway.phonecarrier.com "I CAN HAZ CONVENIENCE"
+
 Installation
 ============
 
