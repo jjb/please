@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+#Configure this!
+@email_address   = 'email@gmail.com'
+@phone_number    = '2128675309'
+@carrier_gateway = 'txt.att.net'
+@dydns           = "moniker.is-a-geek.com"
+
+# Main configuration ends! Don't edit anything below this if you use gmail.
+
+
+# you may have to fiddle with this and delete unused/redundant/old things from your
+# keychain to make this work. test it in irb.
+@password = `security 2>&1 >/dev/null find-internet-password -g -s 'www.google.com' -a '#{@email_address}' | cut -d '"' -f 2`.strip
+
+# Change this is you don't use Gmail
+@smtp_options = {
+  :address              => 'smtp.gmail.com',
+  :port                 => '587',
+  :enable_starttls_auto => true,
+  :user_name            => @email_address,
+  :password             => @password,
+  :authentication       => :plain,
+  :domain               => @dydns
+}
+## configuration ends! Don't edit anything below this!
+
+
+require '/Library/Ruby/Gems/1.8/gems/pony-1.0/lib/pony.rb'
+
+@action = ARGV[0]
+@recipient = ARGV[1]
+@message = ARGV[2]
+
+def email(email_address, message)
+  Pony.mail(
+    :to => email_address,
+    :from => email_address,
+    :subject => message,
+    :body => message,
+    :via => :smtp,
+    :via_options => @smtp_options
+  )
+end
+
+def sms(email_address, message)
+  Pony.mail(
+    :to => email_address,
+    :from => email_address,
+    :subject => '',
+    :body => message,
+    :via => :smtp,
+    :via_options => @smtp_options
+  )
+end
+
+case @action
+when 'email'
+  if 'me' == @recipient
+    ea = @email_address
+  else
+    ea = @recipient
+  end
+  email(ea, @message)
+when 'sms'
+  if 'me' == @recipient
+    ea = "#{@phone_number}@#{@carrier_gateway}"
+  else
+    ea = @recipient
+  end
+  sms(ea, @message)
+end
+# future actions: beep, say something, tweet. yes, tweet.
