@@ -11,3 +11,5 @@ Installation
 1. git clone http://github.com/jjb/Do-Stuff.git
 2. cd ~/bin
 3. ln -s /wherever/Do-Stuff/dostuff .
+
+Now your computer can do stuff.
