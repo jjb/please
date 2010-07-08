@@ -13,3 +13,8 @@ Installation
 3. ln -s /wherever/Do-Stuff/dostuff .
 
 Now your computer can do stuff.
+
+Example
+=======
+
+    sudo tar -cjf massive_file_tree.tar.bz2 massive_file_tree & dostuff sms me "massive_file_tree is done being archived"
