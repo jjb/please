@@ -16,9 +16,9 @@ Installation
 Configureation
 ==============
 
-Create a file `~/please.rb` that looks like this:
+Create a file `~/please.rb` that looks like this (only gmail supported):
 
-    EMAIL_ADDRESS   = "johnjosephbachir@gmail.com"
+    EMAIL_ADDRESS   = "you@gmail.com"
     PHONE_NUMBER    = "1234567890"
     CARRIER_GATEWAY = 'txt.att.net'
     DYDNS           = "your-username.is-a-geek.com"
