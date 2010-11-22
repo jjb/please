@@ -53,6 +53,14 @@ def sms(email_address, message)
 end
 
 case @action
+when 'help', nil
+  print '
+$ dostuff email me "hello"
+$ dostuff email sally@example.com "Hi Sally."
+$ dostuff sms me "what is up."
+$ dostuff sms 8675309@gateway.phonecarrier.com "I CAN HAZ CONVENIENCE"
+$ dostuff exec "<arbitrary shell command, in quotes>' +
+"\n"
 when 'email'
   if 'me' == @object
     ea = @email_address
