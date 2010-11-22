@@ -19,14 +19,8 @@ Gem::Specification.new do |s|
   s.executables       = ['please']
 
   s.has_rdoc          = false
-  # s.extra_rdoc_files  = ['README']
-  # s.rdoc_options      << '--title'    << 'Jammit' <<
-  #                        '--exclude'  << 'test' <<
-  #                        '--main'     << 'README' <<
-  #                        '--all'
 
   s.add_dependency 'pony', '>=1.0'
-
 
   s.files = Dir['please']
 end
