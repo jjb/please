@@ -27,7 +27,7 @@ require 'pony'
 ## configuration ends! Don't edit anything below this!
 
 @action = ARGV[0]
-@recipient = ARGV[1]
+@object = ARGV[1]
 @message = ARGV[2]
 
 def email(email_address, message)
@@ -54,17 +54,17 @@ end
 
 case @action
 when 'email'
-  if 'me' == @recipient
+  if 'me' == @object
     ea = @email_address
   else
-    ea = @recipient
+    ea = @object
   end
   email(ea, @message)
 when 'sms'
-  if 'me' == @recipient
+  if 'me' == @object
     ea = "#{@phone_number}@#{@carrier_gateway}"
   else
-    ea = @recipient
+    ea = @object
   end
   sms(ea, @message)
 end
