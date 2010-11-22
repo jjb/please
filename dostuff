@@ -7,6 +7,8 @@
 @dydns           = "moniker.is-a-geek.com"
 
 # Main configuration ends! Don't edit anything below this if you use gmail.
+require 'rubygems'
+require 'pony'
 
 # you may have to fiddle with this and delete unused/redundant/old things from your
 # keychain to make this work. test it in irb.
@@ -23,9 +25,6 @@
   :domain               => @dydns
 }
 ## configuration ends! Don't edit anything below this!
-
-
-require '/Library/Ruby/Gems/1.8/gems/pony-1.0/lib/pony.rb'
 
 @action = ARGV[0]
 @recipient = ARGV[1]
