@@ -3,7 +3,6 @@ Please
 
 Have you ever wished you could just tell your computer and the internet to do the stuff that you know it knows how to do? Now you can.
 
-
     $ please email me "hello"
     $ please email sally@example.com "Hi Sally."
     $ please sms me "what is up."
@@ -12,12 +11,18 @@ Have you ever wished you could just tell your computer and the internet to do th
 Installation
 ============
 
-1. cd /wherever
-1. git clone http://github.com/jjb/please.git
-2. cd ~/bin
-3. ln -s /wherever/please/please .
+    gem install please
 
-Now your computer can do stuff.
+Configureation
+==============
+
+Create a file `~/please.rb` that looks like this:
+
+    EMAIL_ADDRESS   = "johnjosephbachir@gmail.com"
+    PHONE_NUMBER    = "1234567890"
+    CARRIER_GATEWAY = 'txt.att.net'
+    DYDNS           = "your-username.is-a-geek.com"
+
 
 Example
 =======

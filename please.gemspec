@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name      = 'please'
-  s.version   = '0.0.1'
+  s.version   = '0.0.2'
   s.date      = '2010-11-21'
 
   s.homepage    = "https://github.com/jjb/please/"

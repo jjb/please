@@ -1,30 +1,36 @@
 #!/usr/bin/env ruby
 
-#Configure this!
-@email_address   = 'email@gmail.com'
-@phone_number    = '2128675309'
-@carrier_gateway = 'txt.att.net'
-@dydns           = "moniker.is-a-geek.com"
-
-# Main configuration ends! Don't edit anything below this if you use gmail.
 require 'rubygems'
 require 'pony'
 
-# you may have to fiddle with this and delete unused/redundant/old things from your
-# keychain to make this work. test it in irb.
-@password = `security 2>&1 >/dev/null find-internet-password -g -s 'www.google.com' -a '#{@email_address}' | cut -d '"' -f 2`.strip
+require ENV['HOME'] + '/.please.rb'
+@email_address   = EMAIL_ADDRESS
+@phone_number    = PHONE_NUMBER
+@carrier_gateway = CARRIER_GATEWAY
+@dydns           = DYDNS
+
+@password =
+  if defined?(PASSWORD)
+    PASSWORD
+  else
+   `security 2>&1 >/dev/null find-internet-password -g -s 'www.google.com' -a '#{@email_address}' | cut -d '"' -f 2`.strip
+  end
 
 # Change this is you don't use Gmail
-@smtp_options = {
-  :address              => 'smtp.gmail.com',
-  :port                 => '587',
-  :enable_starttls_auto => true,
-  :user_name            => @email_address,
-  :password             => @password,
-  :authentication       => :plain,
-  :domain               => @dydns
-}
-## configuration ends! Don't edit anything below this!
+@smtp_options = 
+  if defined?(SMTP_OPTIONS)
+    SMTP_OPTIONS
+  else
+    {
+      :address              => 'smtp.gmail.com',
+      :port                 => '587',
+      :enable_starttls_auto => true,
+      :user_name            => @email_address,
+      :password             => @password,
+      :authentication       => :plain,
+      :domain               => @dydns
+    }
+  end
 
 @action = ARGV[0]
 @object = ARGV[1]
