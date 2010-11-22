@@ -67,5 +67,7 @@ when 'sms'
     ea = @object
   end
   sms(ea, @message)
+when 'exec'
+  system @object
 end
 # future actions: beep, say something, tweet. yes, tweet.
