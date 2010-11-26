@@ -27,4 +27,6 @@ Create a file `~/please.rb` that looks like this (only gmail supported):
 Example
 =======
 
-   tar -cjf massive_file_tree.tar.bz2 massive_file_tree & please sms me "massive_file_tree is done being archived"
+    tar -cjf massive_file_tree.tar.bz2 massive_file_tree & please sms me "massive_file_tree is done being archived"
+
+See more examples by running `please help`
