@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'pony'
+require 'active_support/core_ext'
 
 require ENV['HOME'] + '/.please.rb'
 @email_address   = EMAIL_ADDRESS
@@ -36,6 +37,35 @@ require ENV['HOME'] + '/.please.rb'
 @object = ARGV[1]
 @message = ARGV[2]
 
+if %w{email sms}.include?(@action)
+  @timer    = ARGV[3]
+  @increment = ARGV[4].to_i
+  @unit      = ARGV[5]
+elsif %w{exec}.include?(@action)
+  @timer     = ARGV[2]
+  @increment = ARGV[3].to_i
+  @unit      = ARGV[4]
+end
+
+case @timer
+when nil
+  # do nothing
+when 'in'
+  unless @increment.integer? && !@increment.zero?
+    raise "Provided increment is not numeric."
+  end
+
+  unless %w{
+    second seconds minute minutes hour hours day days week weeks fortnight fortnights
+  }.include?(@unit)
+    raise "Provided time unit is not valid."
+  end
+
+  sleep (@increment.send @unit.to_s).to_i
+else
+  raise "\"#{@timer}\"? What does that mean?"
+end
+
 def email(email_address, message)
   Pony.mail(
     :to => email_address,
@@ -59,14 +89,25 @@ def sms(email_address, message)
 end
 
 case @action
-when 'help', nil
+when 'help', '-h', '--help', nil
   print '
+Email, SMS, or arbitrary shell commands:
 $ please email me "hello"
 $ please email sally@example.com "Hi Sally."
 $ please sms me "what is up."
 $ please sms 8675309@gateway.phonecarrier.com "I CAN HAZ CONVENIENCE"
-$ please exec "<arbitrary shell command, in quotes>' +
-"\n"
+$ please exec "<arbitrary shell command, in quotes>"
+
+Wait a certain amount of time first:
+$ please sms me "`uptime`" in 5 minutes
+
+The message being SMSed or Emailed must be all one string to the shell.
+So, enclose multi-word message, or messages generated form other shell
+commands or scripts, in quotes.
+
+https://github.com/jjb/please
+
+'
 when 'email'
   if 'me' == @object
     ea = @email_address
