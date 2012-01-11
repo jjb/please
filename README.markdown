@@ -13,8 +13,8 @@ Installation
 
     gem install please
 
-Configureation
-==============
+Configuration
+=============
 
 Create a file `~/please.rb` that looks like this (only gmail supported):
 
