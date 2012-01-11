@@ -16,7 +16,7 @@ Installation
 Configuration
 =============
 
-Create a file `~/please.rb` that looks like this (only gmail supported):
+Create a file `~/.please.rb` that looks like this (only gmail supported):
 
     EMAIL_ADDRESS   = "you@gmail.com"
     PHONE_NUMBER    = "1234567890"
